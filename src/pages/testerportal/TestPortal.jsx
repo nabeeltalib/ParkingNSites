@@ -13,19 +13,19 @@ const AppLinksPortal = () => {
           </h2>
           <hr className="border-gray-300 mt-3" />
         </div>
-        <div className="min-h-screen  flex justify-center items-center p-4">
-          <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden">
+        <div className=" flex justify-center items-center p-4">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center rounded-xl overflow-hidden">
             {/* Left Section - Image and Branding */}
-            <div className="flex justify-center items-center sm:w-1/2 p-0">
+            <div className="flex justify-center items-center sm:w-1/4 lg:w-1/1 p-0">
               <img
                 src={Image}
                 alt="image"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-center rounded-s-xl"
               />
             </div>
 
             {/* Right Section - App Links */}
-            <div className="lg:w-1/2 p-6 bg-white">
+            <div className="sm:w-1/1 lg:w-1/3 p-6 bg-white rounded-e-xl">
               <h2 className="text-gray-800 text-xl font-bold mb-6 text-center lg:text-left">
                 Find Our Latest App Links
               </h2>

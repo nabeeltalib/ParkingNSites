@@ -54,19 +54,19 @@ const LandingPage = () => {
               <hr className="border-gray-300 mt-3" />
             </div>
 
-            <div className="px-4 sm:px-12 py-4 min-h-screen flex flex-col">
-              <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden">
+            <div className="px-4 sm:px-12 py-4 min-h-screen  flex  flex-col">
+              <div className="flex flex-col sm:flex-row items-stretch justify-center rounded-xl overflow-hidden">
                 {/* Image Section */}
-                <div className="flex justify-center items-center sm:w-1/2 p-0">
+                <div className="flex justify-center  items-center sm:w-1/4 lg:w-1/1 p-0">
                   <img
                     src={Admin}
                     alt="Admin"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-center rounded-s-xl " // Adjust image for portrait mode
                   />
                 </div>
 
                 {/* Content Section */}
-                <div className="px-4 sm:px-12 py-6 sm:w-1/2 bg-white flex flex-col justify-center">
+                <div className="px-4 sm:px-12 py-6 sm:w-1/1 lg:w-1/2 bg-white flex flex-col rounded-e-xl justify-center">
                   <div className="flex justify-between space-x-3 items-center ">
                     <h1 className="font-bold text-xl sm:text-2xl text-gray-800">
                       Resources Available
@@ -112,7 +112,7 @@ const LandingPage = () => {
                         placeholder="Company Resources"
                       />
                       <button
-                        onClick={handleOpen}
+                        onClick={() => navigate("/Signup")}
                         className="absolute right-1 sm:right-3 top-1/2 transform -translate-y-1/2 bg-customBlue px-4 sm:px-6 md:px-8 rounded-md text-xs sm:text-sm md:text-base text-white font-semibold py-1 sm:py-2 md:py-3"
                       >
                         Open

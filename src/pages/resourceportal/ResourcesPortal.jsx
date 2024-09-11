@@ -37,31 +37,38 @@ const ResourcesPortal = () => {
     setGetUserData([user]);
   };
 
+  const validRoles = [
+    { role: "Executive Dashboard", navigate: "/Executive Dashboard" },
+    { role: "Turning Dashboard", navigate: "/Turning Dashboard" },
+    { role: "Ambassador Dashboard", navigate: "/Ambassador Dashboard" },
+    { role: "Admin", navigate: "/Admin" },
+  ];
+
   useEffect(() => {
-    // Fetch user data first
     getUser();
-    // console.log("filter"); // Check filtered data
-
-    // Ensure getUserData is populated before filtering
-    if (getUserData) {
-      const validRoles = [
-        "Executive Dashboard",
-        "Turning Dashboard",
-        "Ambassador Dashboard",
-        "Admin",
-      ];
-
-      const filteredData = getUserData?.map((item) => {
-        if (validRoles.includes(item?.role)) {
+    if (getUserData[0]?.role === "Admin") {
+      setRenderData(
+        validRoles.map((item) => {
           return item;
-        }
-      });
+        })
+      );
+    } else {
+      const filteredData = getUserData?.filter((item) =>
+        validRoles.some((data) => {
+          return data.role === item?.role;
+        })
+      );
+      const matchedRole = validRoles.find((data) =>
+        filteredData.some((item) => data.role === item?.role)
+      );
 
-      setRenderData(filteredData); // Check filtered data
-      // Optionally, you can use the filtered data further
+      // if (matchedRole) {
+      //   // console.log("Navigate to:", matchedRole.navigate);
+      // }
+
+      setRenderData([matchedRole]);
     }
   }, [getUserData, id]);
-  // console.log("test", RenderData);
   return (
     <>
       <div className="bg-gray-200">
@@ -72,40 +79,45 @@ const ResourcesPortal = () => {
           <hr className="border-gray-300 mt-3" />
         </div>
         <div className="px-4 sm:px-8 py-4 min-h-screen flex flex-col">
-          <div className="flex flex-col sm:flex-row items-stretch rounded-xl overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-stretch justify-center rounded-xl overflow-hidden">
             {/* Image Section */}
-            <div className="flex justify-center items-center sm:w-1/2 p-0">
+            <div className="flex justify-center items-center  sm:w-1/4 lg:w-1/1  p-0">
               <img
                 src={Admin}
                 alt="Admin"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-fill rounded-s-xl"
               />
             </div>
 
             {/* Content Section */}
-            <div className="px-4 sm:px-12 py-6 sm:w-1/2 bg-white flex flex-col justify-center">
-              <h1 className="font-bold text-lg sm:text-xl text-gray-800 text-center sm:text-left">
+            <div className="px-4 sm:px-12 py-6 sm:w-1/1 lg:w-1/2 bg-gray-300 rounded-e-xl sm:bg-white flex flex-col justify-center">
+              <h1
+                className="font-bold text-lg sm:text-xl text-gray-800 text-center sm:text-left
+               bg-white text-black py-2  rounded-xl sm:bg-transparent sm:text-gray-800"
+              >
                 Resources Available
               </h1>
+
               <hr className="my-4 border-gray-300" />
 
               <div className="flex flex-col gap-4">
                 {RenderData?.map((item, index) => {
+                  // console.log(item);
                   return (
                     <React.Fragment key={index}>
-                      {index > 0 && index % 4 === 0 && (
-                        <hr className="my-4 border-gray-300" />
+                      {index > 0 && index % 3 === 0 && (
+                        <hr className="my-4 sm:border-gray-300 border-gray-500 " />
                       )}
                       <div className="bg-white shadow-lg w-full p-4 rounded-2xl">
                         <div className="relative flex flex-col sm:flex-row items-center gap-4">
                           {/* Input */}
                           <input
                             className="rounded py-3 px-2 pr-12 md:pr-36 lg:pr-48 focus:outline-none focus:border-blue-500 w-full"
-                            placeholder={item?.role}
+                            placeholder={item?.role ? item.role : item}
                           />
                           {/* Button */}
                           <button
-                            onClick={() => handleButtonClick(item?.link)}
+                            onClick={() => navigate(item?.navigate)}
                             className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-customBlue px-4 sm:px-6 md:px-8 rounded-md text-xs sm:text-sm md:text-base text-white font-semibold py-1 sm:py-2 md:py-3"
                           >
                             Open

@@ -77,6 +77,10 @@ const AppRouter = () => {
       path: "/login",
       element: <LoginModal />,
     },
+    {
+      path: "/Signup",
+      element: <Signup />,
+    },
     ,
   ]);
 
