@@ -13,40 +13,41 @@ import NoPage from "../pages/nopage/NoPage";
 // import About from "../pages/aboutus";
 
 const AppRouter = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
-  useEffect(() => {
-    // Check if the splash screen has been shown before
-    const splashShown = localStorage.getItem("splashShown");
+  // useEffect(() => {
+  //   // Check if the splash screen has been shown before
+  //   const splashShown = localStorage.getItem("splashShown");
 
-    if (splashShown) {
-      setIsLoading(false);
-    } else {
-      // Show the splash screen for the first time
-      setIsLoading(true);
-      // Set a timeout to simulate loading or splash screen duration
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-        localStorage.setItem("splashShown", "true"); // Mark splash screen as shown
-      }, 5000); // Adjust this duration as needed
+  //   if (splashShown) {
+  //     setIsLoading(false); // No splash screen if it was shown before
+  //   } else {
+  //     // Show splash screen for the first time
+  //     setIsLoading(true);
 
-      // Clean up the timer
-      return () => clearTimeout(timer);
-    }
+  //     // Simulate loading/splash screen duration with a timeout
+  //     const timer = setTimeout(() => {
+  //       setIsLoading(false); // Hide the splash screen after timeout
+  //       localStorage.setItem("splashShown", "true"); // Mark splash screen as shown
+  //     }, 3000); // Adjust duration as needed (3 seconds here)
 
-    // Function to clear localStorage when the tab or browser is closed
-    const handleUnload = () => {
-      localStorage.clear();
-    };
+  //     // Clean up the timer
+  //     return () => clearTimeout(timer);
+  //   }
 
-    // Add event listener for page unload
-    window.addEventListener("unload", handleUnload);
+  //   // Clear localStorage when the tab or browser is closed
+  //   const handleUnload = () => {
+  //     localStorage.clear(); // Optionally clear the splash status on tab close
+  //   };
 
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener("unload", handleUnload);
-    };
-  }, []);
+  //   // Add event listener to clear localStorage on page unload
+  //   window.addEventListener("unload", handleUnload);
+
+  //   // Clean up event listener when component unmounts
+  //   return () => {
+  //     window.removeEventListener("unload", handleUnload);
+  //   };
+  // }, []);
 
   const routes = useRoutes([
     {

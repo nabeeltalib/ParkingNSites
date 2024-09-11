@@ -35,7 +35,7 @@ const LandingPage = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3000); // Adjust this value to change the preloader duration
+    }, 5000); // Adjust this value to change the preloader duration
 
     return () => clearTimeout(timer);
   }, [loading]);
@@ -117,7 +117,7 @@ const LandingPage = () => {
                       >
                         Open
                       </button>
-                      {isLoginModal && (
+                      {/* {isLoginModal && (
                         <LoginModal
                           setIsSignupModalOpen={handleSignupModalOpen}
                           setIsLoginModal={setIsLoginModal}
@@ -130,7 +130,7 @@ const LandingPage = () => {
                             setIsLoginModal={setIsLoginModal}
                           />
                         </span>
-                      )}
+                      )} */}
                     </div>
                   </div>
 
